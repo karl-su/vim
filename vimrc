@@ -1,17 +1,18 @@
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible                " be iMproved, required
+filetype on                     " required
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+source ~/.vim/plug.vim
+call plug#begin()
 
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
-Plugin 'vim-scripts/Tagbar'
-Plugin 'vim-scripts/a.vim'
+Plug 'vim-scripts/Tagbar'
+Plug 'vim-scripts/a.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-call vundle#end()
+call plug#end()
 filetype plugin indent on
 
 " 语法高亮
@@ -52,7 +53,24 @@ set nobackup
 set nowb
 set noswapfile
 
-"状态栏显示当前执行的命令
+" 状态栏设置
+set laststatus=2                                    " 状态栏有两行
+set statusline=\                                    " 初始化一个空格
+set statusline+=%m                                  " 是否被修改
+set statusline+=%r                                  " 是否是只读
+set statusline+=%h                                  " 是否是帮助文档
+set statusline+=%w                                  " 是否是预览窗口
+set statusline+=\ %<%F                              " 文件路径
+" set statusline+=\ ---\ %<%{getcwd()}              " 显示当前工作目录,%<表示过长就从该位置收缩
+set statusline+=\ %=\                               " 右对齐
+set statusline+=[%{strlen(&ft)?&ft:'none'}          " 文件类型
+set statusline+=,\ %{strlen(&fenc)?&fenc:'none'}    " 文件类型
+set statusline+=,\ %{&fileformat}]                  " 文件格式
+set statusline+=\ \ %L/%l:%c                        " 总行号\行号:列号
+set statusline+=\ \ %b-0x%B\                        " 字符十进制和十六进制的ASCII值
+
+
+" 状态栏显示当前执行的命令
 set showcmd
 
 " 配色
@@ -88,3 +106,5 @@ nmap 0 :vertical resize -5<CR>
 nmap f :Tagbar<CR>
 nmap ee :NERDTreeToggle<CR>
 map <F2> :NERDTreeToggle<CR>
+
+source ~/.vim/coc.vim
