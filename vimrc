@@ -7,8 +7,9 @@ call plug#begin()
 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-
+Plug 'jistr/vim-nerdtree-tabs'
 Plug 'vim-scripts/Tagbar'
+Plug 'vim-scripts/taglist.vim'
 Plug 'vim-scripts/a.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -87,9 +88,11 @@ set backspace=eol,start,indent
  
 " 配置 Tagbar 插件
 let g:tagbar_left=1             " 窗口在左侧 
+" let g:tagbar_type_javascript={'ctagsbin' : 'jsctags'}
 
 " 配置 nerdtree 插件
-let NERDTreeWinPos='right'      " 窗口在右侧
+let NERDTreeWinPos='right'                      " 窗口在右侧
+let g:nerdtree_tabs_open_on_console_startup=1   " 在终端启动vim时，共享NERDTree
 
 " 快捷键
 map <C-j> :tabprevious<CR>
@@ -100,11 +103,12 @@ imap <C-j> <down>
 imap <C-l> <right>
 imap <C-h> <left>
 
-nmap 9 :vertical resize +5<CR>
-nmap 0 :vertical resize -5<CR>
+" nmap = :vertical resize +5<CR>
+" nmap - :vertical resize -5<CR>
 
 nmap f :Tagbar<CR>
 nmap ee :NERDTreeToggle<CR>
 map <F2> :NERDTreeToggle<CR>
+map <F5> :below term<CR>
 
 source ~/.vim/coc.vim

@@ -1,0 +1,5 @@
+{
+    "http": {
+        "proxy": "devnet-proxy.oa.com:8080"
+    }
+}
